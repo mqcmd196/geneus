@@ -29,4 +29,6 @@
 # LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from . geneus_main import *
+import os
+if os.getenv("ROS_VERSION", "1") != "2":
+    from . geneus_main import *

@@ -40,9 +40,12 @@ import os
 import traceback
 import re
 
-from genmsg import SrvSpec, MsgSpec, MsgContext
-from genmsg.msg_loader import load_srv_from_file, load_msg_by_type
-import genmsg.gentools
+try: # Only for ROS 1
+    from genmsg import SrvSpec, MsgSpec, MsgContext
+    from genmsg.msg_loader import load_srv_from_file, load_msg_by_type
+    import genmsg.gentools
+except ImportError:
+    pass
 
 try:
     from cStringIO import StringIO #Python 2.x

@@ -6,22 +6,29 @@
   <name>geneus</name>
   <version>3.0.0</version>
   <description>
-  EusLisp ROS message and service generators.
+    EusLisp ROS message and service generators for ROS 1.
+    EusLisp ROS message and service typesupport library for ROS 2.
   </description>
   <maintainer email="k-okada@jsk.t.u-tokyo.ac.jp">Kei Okada</maintainer>
+  <maintainer email="obinata@jsk.imi.i.u-tokyo.ac.jp">Yoshiki Obinata</maintainer>
   <license>BSD</license>
 
   <author>Kei Okada</author>
+  <author>Yoshiki Obinata</author>
 
-  <buildtool_depend version_gte="0.5.78">catkin</buildtool_depend>
+  <buildtool_depend version_gte="0.5.78" condition="$ROS_VERSION == 1">catkin</buildtool_depend>
+  <buildtool_depend condition="$ROS_VERSION == 2">ament_python</buildtool_depend>
   <buildtool_depend condition="$ROS_PYTHON_VERSION == 2">python-setuptools</buildtool_depend>
   <buildtool_depend condition="$ROS_PYTHON_VERSION == 3">python3-setuptools</buildtool_depend>
 
-  <build_depend>genmsg</build_depend>
+  <build_depend condition="$ROS_VERSION == 1">genmsg</build_depend>
+  <exec_depend condition="$ROS_VERSION == 1">genmsg</exec_depend>
+  <test_depend condition="$ROS_VERSION == 2">python3-pytest</test_depend>
 
-  <exec_depend>genmsg</exec_depend>
+  <depend condition="ROS_VERSION == 2">rosidl_adapter</depend>
 
   <export>
-    <message_generator>eus</message_generator>
+    <message_generator condition="$ROS_VERSION == 1">eus</message_generator>
+    <build_type condition="$ROS_VERSION == 2">ament_python</build_type>
   </export>
 </package>
